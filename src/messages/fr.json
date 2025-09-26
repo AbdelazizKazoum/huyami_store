@@ -1,0 +1,35 @@
+{
+  "common": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "products": "Produits",
+    "services": "Services",
+    "language": "Langue",
+    "welcome": "Bienvenue chez Huyami Store",
+    "loading": "Chargement..."
+  },
+  "navigation": {
+    "shop": "Boutique",
+    "categories": "Catégories",
+    "cart": "Panier",
+    "account": "Mon Compte",
+    "login": "Connexion",
+    "register": "S'inscrire"
+  },
+  "store": {
+    "title": "Bienvenue chez Huyami Store",
+    "subtitle": "Découvrez des produits incroyables à des prix imbattables",
+    "shopNow": "Magasiner Maintenant",
+    "featuredProducts": "Produits Vedettes",
+    "featuredDescription": "Découvrez notre sélection de produits premium triés sur le volet",
+    "categories": "Catégories",
+    "cart": "Panier d'Achat",
+    "description": "Votre destination shopping de premier choix",
+    "addToCart": "Ajouter au panier",
+    "viewProduct": "Voir le produit",
+    "price": "Prix",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock"
+  }
+}

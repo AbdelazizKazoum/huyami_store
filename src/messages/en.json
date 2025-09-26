@@ -1,0 +1,35 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "products": "Products",
+    "services": "Services",
+    "language": "Language",
+    "welcome": "Welcome to Huyami Store",
+    "loading": "Loading..."
+  },
+  "navigation": {
+    "shop": "Shop",
+    "categories": "Categories",
+    "cart": "Cart",
+    "account": "My Account",
+    "login": "Login",
+    "register": "Register"
+  },
+  "store": {
+    "title": "Welcome to Huyami Store",
+    "subtitle": "Discover amazing products at unbeatable prices",
+    "shopNow": "Shop Now",
+    "featuredProducts": "Featured Products",
+    "featuredDescription": "Discover our handpicked selection of premium products",
+    "categories": "Categories",
+    "cart": "Shopping Cart",
+    "description": "Your premier shopping destination",
+    "addToCart": "Add to Cart",
+    "viewProduct": "View Product",
+    "price": "Price",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock"
+  }
+}

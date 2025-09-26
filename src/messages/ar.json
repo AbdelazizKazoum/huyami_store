@@ -1,0 +1,35 @@
+{
+  "common": {
+    "home": "الرئيسية",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "products": "المنتجات",
+    "services": "الخدمات",
+    "language": "اللغة",
+    "welcome": "مرحباً بكم في متجر هيامي",
+    "loading": "جاري التحميل..."
+  },
+  "navigation": {
+    "shop": "المتجر",
+    "categories": "الفئات",
+    "cart": "السلة",
+    "account": "حسابي",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب"
+  },
+  "store": {
+    "title": "مرحباً بكم في متجر هيامي",
+    "subtitle": "اكتشفوا منتجات مذهلة بأسعار لا تُقاوم",
+    "shopNow": "تسوق الآن",
+    "featuredProducts": "المنتجات المميزة",
+    "featuredDescription": "اكتشف مجموعتنا المختارة بعناية من المنتجات المميزة",
+    "categories": "الفئات",
+    "cart": "سلة التسوق",
+    "description": "وجهتك المفضلة للتسوق",
+    "addToCart": "أضف للسلة",
+    "viewProduct": "عرض المنتج",
+    "price": "السعر",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر"
+  }
+}

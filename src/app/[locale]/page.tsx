@@ -218,13 +218,13 @@ const Header = ({ onCartClick }) => {
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 text-gray-600 hover:text-green-800 rounded-full hover:bg-gray-100 transition-colors duration-300"
+                className="p-2 text-gray-600 hover:text-green-800 rounded-full hover:bg-gray-100 transition-colors duration-300 hidden md:block"
               >
                 <Search size={24} />
               </button>
 
               {/* Language Selector */}
-              <div className="relative">
+              <div className="relative hidden md:block">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                   className="flex items-center p-2 text-gray-600 hover:text-green-800 rounded-full hover:bg-gray-100 transition-colors duration-300"
@@ -302,7 +302,7 @@ const Header = ({ onCartClick }) => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200">
-            <nav className="flex flex-col items-center p-4 space-y-4">
+            <div className="flex flex-col items-center p-4 space-y-4">
               <a
                 href="#"
                 className="text-gray-600 hover:text-green-800 transition-colors duration-300"
@@ -324,7 +324,75 @@ const Header = ({ onCartClick }) => {
               >
                 تواصل معنا
               </a>
-            </nav>
+
+              <div className="border-t border-gray-200 w-full my-2"></div>
+
+              <button
+                onClick={() => {
+                  setIsSearchOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center p-2 text-gray-600 hover:text-green-800 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+              >
+                <Search size={22} />
+                <span className="mr-3">بحث</span>
+              </button>
+
+              <div className="w-full">
+                <button
+                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                  className="w-full flex items-center justify-between p-2 text-gray-600 hover:text-green-800 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+                >
+                  <div className="flex items-center">
+                    <Globe size={22} />
+                    <span className="mr-3">اللغة: {currentLang}</span>
+                  </div>
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 ${
+                      isLangMenuOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isLangMenuOpen && (
+                  <div className="pl-8 rtl:pr-8 rtl:pl-0 pt-2 space-y-2 text-right">
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentLang("AR");
+                        setIsLangMenuOpen(false);
+                      }}
+                      className="block text-gray-700 hover:text-green-800"
+                    >
+                      العربية (AR)
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentLang("FR");
+                        setIsLangMenuOpen(false);
+                      }}
+                      className="block text-gray-700 hover:text-green-800"
+                    >
+                      Français (FR)
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setCurrentLang("EN");
+                        setIsLangMenuOpen(false);
+                      }}
+                      className="block text-gray-700 hover:text-green-800"
+                    >
+                      English (EN)
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </header>
@@ -398,8 +466,9 @@ const FeatureCards = () => {
 
   return (
     <div className="bg-white">
-      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 md:-mt-16 relative z-10">
+        {/* Desktop View: Grid */}
+        <div className="hidden md:grid md:grid-cols-3 md:gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -412,6 +481,25 @@ const FeatureCards = () => {
               <p className="text-gray-500">{feature.description}</p>
             </div>
           ))}
+        </div>
+        {/* Mobile View: Single compact card */}
+        <div className="md:hidden bg-white p-4 rounded-lg shadow-lg border border-gray-100">
+          <div className="flex justify-around items-start text-center">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center px-1 w-1/3"
+              >
+                {React.cloneElement(feature.icon, {
+                  size: 32,
+                  className: "text-green-800 mb-2",
+                })}
+                <h3 className="text-xs sm:text-sm font-bold text-gray-800 leading-tight">
+                  {feature.title}
+                </h3>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

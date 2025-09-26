@@ -151,8 +151,8 @@ const initialCartItems = [
 
 const NoticeBar = () => {
   return (
-    <div className="bg-green-100 text-green-900 py-4 text-center sticky top-0 z-50">
-      <span className="text-lg font-bold tracking-wide px-4">
+    <div className="bg-green-100 text-green-900 py-3 text-center">
+      <span className="text-sm md:text-lg font-bold tracking-wide px-4">
         شحن مجاني لجميع الطلبات في المغرب خلال 24 إلى 48 ساعة – الدفع عند
         الاستلام متاح
       </span>
@@ -167,7 +167,7 @@ const Header = ({ onCartClick }) => {
   const [currentLang, setCurrentLang] = useState("AR");
 
   return (
-    <div className="sticky top-[60px] z-40">
+    <div className="sticky top-0 z-40">
       <header className="bg-white/90 backdrop-blur-lg shadow-sm">
         <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -368,7 +368,7 @@ const PromotionalBanner = () => {
     <div className="w-full bg-[#f7f6f2]">
       <a href="#" className="block">
         <img
-          src="https://placehold.co/1600x500/f7f6f2/166534?text=منتجات+طبيعية+بجودة+عالية"
+          src="https://placehold.co/1600x450/f7f6f2/166534?text=منتجات+طبيعية+بجودة+عالية"
           alt="عرض ترويجي"
           className="w-full h-auto object-cover"
         />

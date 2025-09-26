@@ -10,10 +10,13 @@ export default createMiddleware({
 
   // Only run middleware on specific paths
   localePrefix: "as-needed",
+
+  // Automatically detect user's preferred language
+  localeDetection: true,
 });
 
 export const config = {
-  // Match only internationalized pathnames
+  // Match only internationalized pathnames (exclude admin routes)
   matcher: [
     // Enable a redirect to a matching locale at the root
     "/",
@@ -23,7 +26,7 @@ export const config = {
     "/(fr|ar|en)/:path*",
 
     // Enable redirects that add missing locales
-    // (e.g. `/pathnames` -> `/en/pathnames`)
-    "/((?!_next|_vercel|.*\\.).*)",
+    // but exclude admin routes, api routes, and static files
+    "/((?!admin|api|_next|_vercel|favicon.ico|.*\\.).*)",
   ],
 };

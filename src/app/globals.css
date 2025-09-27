@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+/* Base font styles - fonts are loaded by Next.js font system */
+body {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Arabic text specific styling */
+[lang="ar"] {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+  text-align: right;
+  direction: rtl;
+}
+
+/* Ensure proper font for Arabic content regardless of parent lang */
+.font-arabic,
+*[lang="ar"],
+.arabic-text {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+}
+
+/* Enhanced typography for better readability */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Better spacing for Arabic text */
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6,
+[lang="ar"] p {
+  line-height: 1.8;
+}

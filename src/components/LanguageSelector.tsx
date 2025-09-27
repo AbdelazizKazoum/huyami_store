@@ -10,11 +10,6 @@ export default function LanguageSelector() {
   const router = useRouter();
 
   const handleLanguageChange = (newLocale: string) => {
-    // Save the language preference in localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("preferred-language", newLocale);
-    }
-
     // Get the path without the current locale
     const segments = pathname.split("/");
     segments[1] = newLocale; // Replace the locale segment

@@ -16,9 +16,78 @@ import {
 } from "lucide-react";
 import { Transition } from "@headlessui/react";
 
-// --- Mock Data for Products ---
-// In a real application, this would come from an API
-const products = [
+// --- Type Definitions ---
+
+type Category = {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+};
+
+type Product = {
+  id: number;
+  name: string;
+  price: string;
+  originalPrice?: string;
+  image: string;
+  isNew: boolean;
+  description: string;
+  category: Category;
+  subImages: string[];
+  keywords: string[];
+};
+
+type CartItem = {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+  quantity: number;
+};
+
+// --- Mock Data ---
+
+const categories: Category[] = [
+  {
+    id: 1,
+    name: "العناية بالبشرة",
+    description: "كل ما تحتاجينه لبشرة نضرة وصحية.",
+    image: "https://placehold.co/200x200/f3e0e6/ffffff?text=بشرة",
+  },
+  {
+    id: 2,
+    name: "العناية بالشعر",
+    description: "منتجات طبيعية لتقوية وتغذية شعرك.",
+    image: "https://placehold.co/200x200/f0e6d3/ffffff?text=شعر",
+  },
+  {
+    id: 3,
+    name: "العطور",
+    description: "تشكيلة فاخرة من العطور الشرقية والغربية.",
+    image: "https://placehold.co/200x200/e4d8c8/ffffff?text=عطور",
+  },
+  {
+    id: 4,
+    name: "المكياج",
+    description: "أبرزي جمالك مع مجموعتنا من المكياج.",
+    image: "https://placehold.co/200x200/d6c2b1/ffffff?text=مكياج",
+  },
+  {
+    id: 5,
+    name: "العناية بالجسم",
+    description: "دللي جسمك بمنتجاتنا المرطبة والمغذية.",
+    image: "https://placehold.co/200x200/c7b7a7/ffffff?text=جسم",
+  },
+  {
+    id: 6,
+    name: "منتجات عضوية",
+    description: "منتجات طبيعية 100% وخالية من المواد الكيميائية.",
+    image: "https://placehold.co/200x200/d1e4d1/ffffff?text=عضوي",
+  },
+];
+
+const products: Product[] = [
   {
     id: 1,
     name: "كريم مرطب بالصبار",
@@ -26,6 +95,14 @@ const products = [
     originalPrice: "120.00 ر.س",
     image: "https://placehold.co/400x400/d1e4d1/ffffff?text=منتج+1",
     isNew: true,
+    description:
+      "كريم غني بخلاصة الصبار الطبيعي لترطيب عميق وتهدئة البشرة الحساسة. مثالي للاستخدام اليومي.",
+    category: categories[0], // العناية بالبشرة
+    subImages: [
+      "https://placehold.co/400x400/d1e4d1/ffffff?text=صورة+2",
+      "https://placehold.co/400x400/d1e4d1/ffffff?text=صورة+3",
+    ],
+    keywords: ["كريم", "صبار", "ترطيب", "بشرة حساسة"],
   },
   {
     id: 2,
@@ -33,6 +110,11 @@ const products = [
     price: "150.00 ر.س",
     image: "https://placehold.co/400x400/e4d8c8/ffffff?text=منتج+2",
     isNew: false,
+    description:
+      "زيت الأرغان المغربي النقي 100% لتغذية الشعر والبشرة والأظافر. يعالج التقصف ويمنح لمعاناً طبيعياً.",
+    category: categories[1], // العناية بالشعر
+    subImages: [],
+    keywords: ["زيت", "أرغان", "شعر", "بشرة", "أظافر"],
   },
   {
     id: 3,
@@ -40,6 +122,11 @@ const products = [
     price: "45.00 ر.س",
     image: "https://placehold.co/400x400/c7b7a7/ffffff?text=منتج+3",
     isNew: false,
+    description:
+      "صابون طبيعي مصنوع من الطين المغربي (الغاسول) لتنظيف عميق للمسام وإزالة الشوائب.",
+    category: categories[4], // العناية بالجسم
+    subImages: [],
+    keywords: ["صابون", "طين مغربي", "غاسول", "تنظيف"],
   },
   {
     id: 4,
@@ -48,6 +135,11 @@ const products = [
     originalPrice: "300.00 ر.س",
     image: "https://placehold.co/400x400/b4a69a/ffffff?text=منتج+4",
     isNew: true,
+    description:
+      "عطر شرقي فاخر بلمسة من العود الكمبودي الأصيل. يدوم طويلاً ومناسب للجنسين.",
+    category: categories[2], // العطور
+    subImages: [],
+    keywords: ["عطر", "عود", "فاخر", "شرقي"],
   },
   {
     id: 5,
@@ -55,6 +147,11 @@ const products = [
     price: "70.00 ر.س",
     image: "https://placehold.co/400x400/d6c2b1/ffffff?text=منتج+5",
     isNew: false,
+    description:
+      "مقشر طبيعي بحبيبات القهوة لإزالة الجلد الميت وتنشيط الدورة الدموية، يترك البشرة ناعمة ومشرقة.",
+    category: categories[4], // العناية بالجسم
+    subImages: [],
+    keywords: ["مقشر", "قهوة", "جسم", "تقشير"],
   },
   {
     id: 6,
@@ -62,6 +159,11 @@ const products = [
     price: "35.00 ر.س",
     image: "https://placehold.co/400x400/f3e0e6/ffffff?text=منتج+6",
     isNew: false,
+    description:
+      "ماء ورد مقطر 100%، يستخدم كتونر طبيعي لإنعاش البشرة وإغلاق المسام.",
+    category: categories[0], // العناية بالبشرة
+    subImages: [],
+    keywords: ["ماء ورد", "تونر", "بشرة"],
   },
   {
     id: 7,
@@ -69,6 +171,11 @@ const products = [
     price: "95.00 ر.س",
     image: "https://placehold.co/400x400/f0e6d3/ffffff?text=منتج+7",
     isNew: true,
+    description:
+      "بلسم غني بزبدة الشيا لترطيب الشعر الجاف والتالف، يسهل التسريح ويمنح الشعر ملمساً حريرياً.",
+    category: categories[1], // العناية بالشعر
+    subImages: [],
+    keywords: ["بلسم", "شيا", "شعر جاف", "ترطيب"],
   },
   {
     id: 8,
@@ -77,6 +184,11 @@ const products = [
     originalPrice: "80.00 ر.س",
     image: "https://placehold.co/400x400/a3a3a3/ffffff?text=منتج+8",
     isNew: false,
+    description:
+      "ماسك الفحم النشط لتنقية البشرة وإزالة الرؤوس السوداء والدهون الزائدة.",
+    category: categories[0], // العناية بالبشرة
+    subImages: [],
+    keywords: ["ماسك", "فحم", "رؤوس سوداء", "بشرة دهنية"],
   },
   {
     id: 9,
@@ -84,6 +196,11 @@ const products = [
     price: "110.00 ر.س",
     image: "https://placehold.co/400x400/f8c98d/ffffff?text=منتج+9",
     isNew: true,
+    description:
+      "سيروم مركز بفيتامين سي لنضارة البشرة، تفتيح البقع الداكنة ومحاربة علامات التقدم في السن.",
+    category: categories[0], // العناية بالبشرة
+    subImages: [],
+    keywords: ["سيروم", "فيتامين سي", "نضارة", "تفتيح"],
   },
   {
     id: 10,
@@ -92,45 +209,15 @@ const products = [
     originalPrice: "90.00 ر.س",
     image: "https://placehold.co/400x400/b3e6e0/ffffff?text=منتج+10",
     isNew: false,
+    description:
+      "كريم خفيف بمنطقة العين بخلاصة الخيار لتقليل الانتفاخات والهالات السوداء.",
+    category: categories[0], // العناية بالبشرة
+    subImages: [],
+    keywords: ["كريم عين", "خيار", "هالات سوداء"],
   },
 ];
 
-// --- Mock Data for Categories ---
-const categories = [
-  {
-    id: 1,
-    name: "العناية بالبشرة",
-    image: "https://placehold.co/200x200/f3e0e6/ffffff?text=بشرة",
-  },
-  {
-    id: 2,
-    name: "العناية بالشعر",
-    image: "https://placehold.co/200x200/f0e6d3/ffffff?text=شعر",
-  },
-  {
-    id: 3,
-    name: "العطور",
-    image: "https://placehold.co/200x200/e4d8c8/ffffff?text=عطور",
-  },
-  {
-    id: 4,
-    name: "المكياج",
-    image: "https://placehold.co/200x200/d6c2b1/ffffff?text=مكياج",
-  },
-  {
-    id: 5,
-    name: "العناية بالجسم",
-    image: "https://placehold.co/200x200/c7b7a7/ffffff?text=جسم",
-  },
-  {
-    id: 6,
-    name: "منتجات عضوية",
-    image: "https://placehold.co/200x200/d1e4d1/ffffff?text=عضوي",
-  },
-];
-
-// --- Mock Data for Cart Items ---
-const initialCartItems = [
+const initialCartItems: CartItem[] = [
   {
     id: 2,
     name: "زيت الأرغان الأصلي",
@@ -149,7 +236,7 @@ const initialCartItems = [
 
 // --- Components ---
 
-const NoticeBar = () => {
+const NoticeBar: React.FC = () => {
   return (
     <div className="bg-green-100 text-green-900 py-3 text-center">
       <span className="text-sm md:text-lg font-bold tracking-wide px-4">
@@ -160,7 +247,11 @@ const NoticeBar = () => {
   );
 };
 
-const Header = ({ onCartClick }) => {
+interface HeaderProps {
+  onCartClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onCartClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -431,7 +522,7 @@ const Header = ({ onCartClick }) => {
   );
 };
 
-const PromotionalBanner = () => {
+const PromotionalBanner: React.FC = () => {
   return (
     <div className="w-full bg-[#f7f6f2]">
       <a href="#" className="block">
@@ -445,7 +536,7 @@ const PromotionalBanner = () => {
   );
 };
 
-const FeatureCards = () => {
+const FeatureCards: React.FC = () => {
   const features = [
     {
       icon: <Truck size={40} className="text-green-800 mb-4" />,
@@ -466,7 +557,7 @@ const FeatureCards = () => {
 
   return (
     <div className="bg-white">
-      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 md:-mt-16 relative z-10">
+      <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 md:-mt-16 relative z-10">
         {/* Desktop View: Grid */}
         <div className="hidden md:grid md:grid-cols-3 md:gap-8">
           {features.map((feature, index) => (
@@ -506,7 +597,11 @@ const FeatureCards = () => {
   );
 };
 
-const SectionTitle = ({ children }) => {
+interface SectionTitleProps {
+  children: React.ReactNode;
+}
+
+const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
   return (
     <div className="text-center mb-16">
       <h2
@@ -520,7 +615,13 @@ const SectionTitle = ({ children }) => {
   );
 };
 
-const CategoriesSection = () => {
+interface CategoriesSectionProps {
+  categories: Category[];
+}
+
+const CategoriesSection: React.FC<CategoriesSectionProps> = ({
+  categories,
+}) => {
   return (
     <div className="bg-white pt-16 sm:pt-24 pb-16 sm:pb-24">
       <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -556,8 +657,12 @@ const CategoriesSection = () => {
   );
 };
 
-const ProductCard = ({ product }) => {
-  const parsePrice = (priceString) => {
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const parsePrice = (priceString?: string) => {
     if (!priceString) return 0;
     return parseFloat(priceString.replace(/[^0-9.]/g, ""));
   };
@@ -611,7 +716,15 @@ const ProductCard = ({ product }) => {
   );
 };
 
-const ProductSection = ({
+interface ProductSectionProps {
+  title: string;
+  subtitle?: string;
+  products: Product[];
+  showButton?: boolean;
+  bgColor?: string;
+}
+
+const ProductSection: React.FC<ProductSectionProps> = ({
   title,
   subtitle,
   products,
@@ -644,7 +757,7 @@ const ProductSection = ({
   );
 };
 
-const NewsletterSection = () => {
+const NewsletterSection: React.FC = () => {
   return (
     <div className="bg-amber-50/70 py-16 sm:py-24">
       <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -680,7 +793,7 @@ const NewsletterSection = () => {
   );
 };
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -803,14 +916,22 @@ const Footer = () => {
   );
 };
 
-const CartSidebar = ({
+interface CartSidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+  items: CartItem[];
+  onUpdateQuantity: (itemId: number, newQuantity: number) => void;
+  onRemoveItem: (itemId: number) => void;
+}
+
+const CartSidebar: React.FC<CartSidebarProps> = ({
   isOpen,
   onClose,
   items,
   onUpdateQuantity,
   onRemoveItem,
 }) => {
-  const parsePrice = (priceString) =>
+  const parsePrice = (priceString: string) =>
     parseFloat(priceString.replace(/[^0-9.]/g, ""));
 
   const subtotal = items.reduce(
@@ -960,22 +1081,24 @@ const CartSidebar = ({
 // This would be your `app/page.jsx` in a Next.js 15 project.
 export default function EcommerceLandingPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
 
-  const handleUpdateQuantity = (itemId, newQuantity) => {
+  const handleUpdateQuantity = (itemId: number, newQuantity: number) => {
     if (newQuantity < 1) {
       handleRemoveItem(itemId);
       return;
     }
-    setCartItems(
-      cartItems.map((item) =>
+    setCartItems((currentItems) =>
+      currentItems.map((item) =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
-  const handleRemoveItem = (itemId) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
+  const handleRemoveItem = (itemId: number) => {
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.id !== itemId)
+    );
   };
 
   return (
@@ -1009,7 +1132,7 @@ export default function EcommerceLandingPage() {
         <main>
           <PromotionalBanner />
           <FeatureCards />
-          <CategoriesSection />
+          <CategoriesSection categories={categories} />
           <ProductSection
             title="مجموعاتنا الأكثر طلبا"
             subtitle="استكشفي المنتجات التي حازت على أعلى تقييمات من عملائنا."

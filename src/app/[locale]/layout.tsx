@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import "../globals.css";
 import { Locale, locales } from "@/i18n/config";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Huyami Store",
@@ -15,7 +16,7 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 
@@ -29,16 +30,12 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <main
-      lang={locale}
-      dir={locale === "ar" ? "rtl" : "ltr"}
-      className="antialiased"
-    >
+    <ThemeProvider>
       <NextIntlClientProvider messages={messages}>
         {/* <ClientNavigation /> */}
         <main className="min-h-screen">{children}</main>
         {/* <Footer /> */}
       </NextIntlClientProvider>
-    </main>
+    </ThemeProvider>
   );
 }

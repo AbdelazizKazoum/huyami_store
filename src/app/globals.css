@@ -1,5 +1,199 @@
 @import "tailwindcss";
 
+/* ===== HUYAMY THEME COLORS ===== */
+@layer base {
+  :root {
+    /* Primary Colors - Green Theme */
+    --color-primary: 22 101 52; /* green-700 */
+    --color-primary-dark: 20 83 45; /* green-800 */
+    --color-primary-darker: 20 71 45; /* green-900 */
+    --color-primary-light: 220 252 231; /* green-100 */
+    --color-primary-medium: 134 239 172; /* green-300 */
+
+    /* Secondary Colors - Amber Theme */
+    --color-secondary: 245 158 11; /* amber-500 */
+    --color-secondary-light: 251 191 36; /* amber-400 */
+    --color-secondary-dark: 217 119 6; /* amber-600 */
+
+    /* Neutral Colors */
+    --color-neutral-50: 249 250 251; /* gray-50 */
+    --color-neutral-100: 243 244 246; /* gray-100 */
+    --color-neutral-200: 229 231 235; /* gray-200 */
+    --color-neutral-300: 209 213 219; /* gray-300 */
+    --color-neutral-400: 156 163 175; /* gray-400 */
+    --color-neutral-500: 107 114 128; /* gray-500 */
+    --color-neutral-600: 75 85 99; /* gray-600 */
+    --color-neutral-700: 55 65 81; /* gray-700 */
+    --color-neutral-800: 31 41 55; /* gray-800 */
+    --color-neutral-900: 17 24 39; /* gray-900 */
+
+    /* Light Mode Colors */
+    --color-bg-primary: 255 255 255; /* white */
+    --color-bg-secondary: 247 246 242; /* stone-50 equivalent */
+    --color-bg-tertiary: 249 250 251; /* gray-50 */
+    --color-bg-accent: 255 251 235; /* amber-50 */
+    --color-bg-success: 220 252 231; /* green-100 */
+
+    --color-text-primary: 17 24 39; /* gray-900 */
+    --color-text-secondary: 75 85 99; /* gray-600 */
+    --color-text-muted: 107 114 128; /* gray-500 */
+    --color-text-inverse: 255 255 255; /* white */
+
+    --color-border-light: 229 231 235; /* gray-200 */
+    --color-border-medium: 209 213 219; /* gray-300 */
+    --color-border-dark: 156 163 175; /* gray-400 */
+
+    --color-shadow: 0 0 0; /* black for shadows */
+  }
+
+  /* Dark Mode Colors */
+  .dark {
+    /* Backgrounds - Dark Mode */
+    --color-bg-primary: 17 24 39; /* gray-900 */
+    --color-bg-secondary: 31 41 55; /* gray-800 */
+    --color-bg-tertiary: 55 65 81; /* gray-700 */
+    --color-bg-accent: 59 39 39; /* dark amber equivalent */
+    --color-bg-success: 20 71 45; /* dark green-900 */
+
+    /* Text - Dark Mode */
+    --color-text-primary: 249 250 251; /* gray-50 */
+    --color-text-secondary: 209 213 219; /* gray-300 */
+    --color-text-muted: 156 163 175; /* gray-400 */
+    --color-text-inverse: 17 24 39; /* gray-900 */
+
+    /* Borders - Dark Mode */
+    --color-border-light: 75 85 99; /* gray-600 */
+    --color-border-medium: 107 114 128; /* gray-500 */
+    --color-border-dark: 156 163 175; /* gray-400 */
+
+    /* Shadow - Dark Mode */
+    --color-shadow: 0 0 0; /* black for shadows */
+  }
+}
+
+/* Theme Color Classes */
+@layer utilities {
+  /* Primary Colors */
+  .bg-primary {
+    background-color: rgb(var(--color-primary));
+  }
+  .bg-primary-dark {
+    background-color: rgb(var(--color-primary-dark));
+  }
+  .bg-primary-darker {
+    background-color: rgb(var(--color-primary-darker));
+  }
+  .bg-primary-light {
+    background-color: rgb(var(--color-primary-light));
+  }
+  .bg-primary-medium {
+    background-color: rgb(var(--color-primary-medium));
+  }
+
+  .text-primary {
+    color: rgb(var(--color-primary));
+  }
+  .text-primary-dark {
+    color: rgb(var(--color-primary-dark));
+  }
+  .text-primary-darker {
+    color: rgb(var(--color-primary-darker));
+  }
+  .text-primary-light {
+    color: rgb(var(--color-primary-light));
+  }
+
+  .border-primary {
+    border-color: rgb(var(--color-primary));
+  }
+  .border-primary-dark {
+    border-color: rgb(var(--color-primary-dark));
+  }
+
+  /* Secondary Colors */
+  .bg-secondary {
+    background-color: rgb(var(--color-secondary));
+  }
+  .bg-secondary-light {
+    background-color: rgb(var(--color-secondary-light));
+  }
+  .bg-secondary-dark {
+    background-color: rgb(var(--color-secondary-dark));
+  }
+
+  .text-secondary {
+    color: rgb(var(--color-secondary));
+  }
+  .text-secondary-light {
+    color: rgb(var(--color-secondary-light));
+  }
+  .text-secondary-dark {
+    color: rgb(var(--color-secondary-dark));
+  }
+
+  /* Background Colors */
+  .bg-theme-primary {
+    background-color: rgb(var(--color-bg-primary));
+  }
+  .bg-theme-secondary {
+    background-color: rgb(var(--color-bg-secondary));
+  }
+  .bg-theme-tertiary {
+    background-color: rgb(var(--color-bg-tertiary));
+  }
+  .bg-theme-accent {
+    background-color: rgb(var(--color-bg-accent));
+  }
+  .bg-theme-success {
+    background-color: rgb(var(--color-bg-success));
+  }
+
+  /* Text Colors */
+  .text-theme-primary {
+    color: rgb(var(--color-text-primary));
+  }
+  .text-theme-secondary {
+    color: rgb(var(--color-text-secondary));
+  }
+  .text-theme-muted {
+    color: rgb(var(--color-text-muted));
+  }
+  .text-theme-inverse {
+    color: rgb(var(--color-text-inverse));
+  }
+
+  /* Border Colors */
+  .border-theme-light {
+    border-color: rgb(var(--color-border-light));
+  }
+  .border-theme-medium {
+    border-color: rgb(var(--color-border-medium));
+  }
+  .border-theme-dark {
+    border-color: rgb(var(--color-border-dark));
+  }
+
+  /* Hover States */
+  .hover\:bg-primary:hover {
+    background-color: rgb(var(--color-primary));
+  }
+  .hover\:bg-primary-dark:hover {
+    background-color: rgb(var(--color-primary-dark));
+  }
+  .hover\:bg-primary-darker:hover {
+    background-color: rgb(var(--color-primary-darker));
+  }
+  .hover\:text-primary:hover {
+    color: rgb(var(--color-primary));
+  }
+  .hover\:text-primary-dark:hover {
+    color: rgb(var(--color-primary-dark));
+  }
+  .hover\:border-primary:hover {
+    border-color: rgb(var(--color-primary));
+  }
+}
+
 /* Base font styles - fonts are loaded by Next.js font system */
 body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;

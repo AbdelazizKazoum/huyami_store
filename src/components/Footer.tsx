@@ -10,34 +10,36 @@ export default function Footer() {
   const locale = pathname.split("/")[1];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-theme-primary border-t border-theme-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Huyami Store</h3>
-            <p className="text-gray-400 mb-4">
+            <h3 className="text-xl font-bold mb-4 text-theme-primary">
+              Huyami Store
+            </h3>
+            <p className="text-theme-muted mb-4">
               Your premier shopping destination with quality products and
               exceptional service.
             </p>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-theme-muted hover:text-theme-primary transition-colors"
               >
                 <span className="sr-only">Facebook</span>
                 📘
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-theme-muted hover:text-theme-primary transition-colors"
               >
                 <span className="sr-only">Twitter</span>
                 🐦
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-theme-muted hover:text-theme-primary transition-colors"
               >
                 <span className="sr-only">Instagram</span>
                 📷
@@ -47,12 +49,14 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 text-theme-primary">
+              Quick Links
+            </h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href={`/${locale}`}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   {t("home")}
                 </Link>
@@ -60,7 +64,7 @@ export default function Footer() {
               <li>
                 <Link
                   href={`/${locale}/categories`}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   Categories
                 </Link>
@@ -68,7 +72,7 @@ export default function Footer() {
               <li>
                 <Link
                   href={`/${locale}/about`}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   {t("about")}
                 </Link>
@@ -76,7 +80,7 @@ export default function Footer() {
               <li>
                 <Link
                   href={`/${locale}/contact`}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   {t("contact")}
                 </Link>
@@ -86,12 +90,14 @@ export default function Footer() {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Customer Service</h4>
+            <h4 className="text-lg font-semibold mb-4 text-theme-primary">
+              Customer Service
+            </h4>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   Help Center
                 </a>
@@ -99,7 +105,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   Returns & Exchanges
                 </a>
@@ -107,7 +113,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   Shipping Info
                 </a>
@@ -115,7 +121,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-theme-muted hover:text-theme-primary transition-colors"
                 >
                   Size Guide
                 </a>
@@ -125,20 +131,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-theme-light mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-theme-muted text-sm">
             © 2024 Huyami Store. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a
               href="#"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
+              className="text-theme-muted hover:text-theme-primary text-sm transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
+              className="text-theme-muted hover:text-theme-primary text-sm transition-colors"
             >
               Terms of Service
             </a>
